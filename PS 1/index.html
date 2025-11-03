@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form onsubmit="return check()">
+  Name: <input id="name"><br><br>
+  Email: <input id="email"><br><br>
+  Password: <input id="pass" type="password"><br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<p id="msg"></p>
+
+<script>
+function check(){
+  let n = document.getElementById("name").value.trim();
+  let e = document.getElementById("email").value.trim();
+  let p = document.getElementById("pass").value.trim();
+  let m = document.getElementById("msg");
+
+  if(n=="" || e=="" || p==""){
+    m.innerHTML = "❌ All fields are required";
+    return false;
+  }
+
+  if(!e.includes("@") || !e.includes(".")){
+    m.innerHTML = "❌ Invalid email format";
+    return false;
+  }
+
+  if(p.length < 6 || !/[0-9]/.test(p) || !/[!@#$%^&*]/.test(p)){
+    m.innerHTML = "❌ Weak password (Min 6 char + number + special char)";
+    return false;
+  }
+
+  m.innerHTML = "✅ Form Submitted Successfully!";
+  return false; // stop real submission
+}
+</script>
+
+</body>
+</html>
